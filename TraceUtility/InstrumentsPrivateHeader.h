@@ -39,6 +39,15 @@ extern "C" {
 - (double)parentWeightPercent:(NSUInteger)index; // parent.weight / root.weight
 @end
 
+
+@interface XRLeak : NSObject
+- (NSUInteger)discoveryTimestamp;
+- (NSUInteger)allocationTimestamp;
+- (NSUInteger)size;
+- (NSUInteger)address;
+//- (XRRawBacktrace)backtrace;
+@end
+
 @interface XRBacktraceRepository : NSObject
 - (PFTCallTreeNode *)rootNode;
 - (void)refreshTreeRoot;
@@ -53,6 +62,10 @@ extern "C" {
 
 @interface XRSamplerRun : XRRun
 - (XRBacktraceRepository *)backtraceRepository;
+@end
+
+@interface XRLeaksRun : XRRun
+- (NSArray *)allLeaks;
 @end
 
 @interface XRRunListData : NSObject
