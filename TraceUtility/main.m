@@ -18,7 +18,7 @@ int main(int argc, const char * argv[]) {
         // Open a trace document.
         XRTrace *trace = [[XRTrace alloc]initForCommandLine:NO];
         NSError *error;
-        NSString *tracePath = @"/Users/mhu/Instruments.trace";
+        NSString *tracePath = @"/Users/mhu/Memory.trace";
         if (argc >= 2) {
             tracePath = [NSString stringWithUTF8String:argv[1]];
         }
@@ -40,7 +40,9 @@ int main(int argc, const char * argv[]) {
                     NSArray *leaks = [(XRLeaksRun *)run allLeaks];
                     [leaks enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                         XRLeak *leak = (XRLeak *)obj;
+                        XRRawBacktrace *backTrace = [leak backtrace];
                         NSPrint(@"Leaked Object:%lu, Address:0x%lx", leak.size, leak.address);
+                        
                     }];
                 }
                 NSPrint(@"\n");

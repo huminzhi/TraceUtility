@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "XRLeak.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -37,15 +38,6 @@ extern "C" {
 - (double)selfWeightPercent:(NSUInteger)index; // self.selfWeight / root.weight
 - (double)totalWeightPercent:(NSUInteger)index; // self.weight / root.weight
 - (double)parentWeightPercent:(NSUInteger)index; // parent.weight / root.weight
-@end
-
-
-@interface XRLeak : NSObject
-- (NSUInteger)discoveryTimestamp;
-- (NSUInteger)allocationTimestamp;
-- (NSUInteger)size;
-- (NSUInteger)address;
-//- (XRRawBacktrace)backtrace;
 @end
 
 @interface XRBacktraceRepository : NSObject
